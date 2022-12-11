@@ -1,0 +1,7 @@
+{
+  "name": "parrotAPP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
