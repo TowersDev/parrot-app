@@ -1,0 +1,43 @@
+<ion-content>
+  <form #f="ngForm" (ngSubmit)="submitForm(f)">
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+      <ion-input type="email" shape="round" name="email" ngModel #emailCtrl="ngModel" placeholder="Email" required></ion-input>
+    </ion-item>
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="key" slot="start" color="primary"></ion-icon>
+      <ion-icon [name]="type ? 'eye-outline' : 'eye-off-outline'" slot="end" color="primary" (click)="changeType()"></ion-icon>
+      <ion-input [type]="type ? 'password' : 'text'"
+        name="password"
+        ngModel
+        shape="round"
+        #passwordCtrl="ngModel"
+        placeholder="Password"
+        required minlength="8">
+      </ion-input>
+    </ion-item>
+    <span class=" register" routerLink="/login/forgot-password"><b>Recuperar
+        contraseña</b></span>
+    <ion-button
+      *ngIf="!isLogin"
+      [disabled]="!f.valid"
+      type="submit"
+      shape="round"
+      color="danger"
+      expand="block"
+      >
+        Iniciar sesión
+    </ion-button>
+  </form>
+  <span class="center">También puedes hacer login desde:</span>
+  <div class="social-links">
+    <ion-button size="large" color="danger" (click)="this.registrarGoogle()">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-button>
+    <ion-button [disabled]="true" size="large" (click)="this.registrarFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-button>
+  </div>
+  <span class="center">¿Aún no tienes una cuenta? <b
+      routerLink="/login/register">Registrarse</b></span>
+</ion-content>

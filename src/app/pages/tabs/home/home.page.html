@@ -1,0 +1,39 @@
+<ion-menu contentId="main-content">
+  <!-- BODY MENU -->
+  <ion-content class="ion-padding">
+    <ion-toolbar color="secundary">
+      <ion-buttons color="secundary" slot="end">
+        <ion-button fill="clear" (click)="confirmLogout()">
+          <ion-icon name="power-outline" color="white" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar color="secundary">
+      <div class="avatar">
+        <img src="assets/images/avatar-default.jpg" class="menu" />
+      </div>
+      <ion-label>{{this.profile?.name}}</ion-label>
+    </ion-toolbar>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <!-- HEADER -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-avatar>
+        <img src="assets/images/avatar-default.jpg" />
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+      <!-- BODY -->
+  <ion-content class="ion-padding">
+    <ion-card>
+      <img src="assets/images/avatar-default.jpg" class="pepe" />
+      <div class="card-title">São Paulo</div>
+      <div class="card-subtitle">41 Listings</div>
+  </ion-card>
+  </ion-content>
+</div>

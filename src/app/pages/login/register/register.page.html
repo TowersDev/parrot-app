@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #f1="ngForm" (ngSubmit)="submitForm(f1)">
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="person" slot="start" color="primary"></ion-icon>
+      <ion-input
+        type="text"
+        name="name"
+        ngModel
+        #name="ngModel"
+        placeholder="Name"
+        required>
+      </ion-input>
+    </ion-item>
+    <ion-label color="danger" *ngIf="!name.valid && name.touched" class="errorMsg">* Please enter your name</ion-label>
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+      <ion-input
+        type="email"
+        name="email"
+        ngModel
+        email
+        #emailCtrl="ngModel"
+        placeholder="Email"
+        required>
+      </ion-input>
+    </ion-item>
+    <ion-label
+      color="danger"
+      *ngIf="(!emailCtrl.valid || !validateEmail(emailCtrl.value)) && emailCtrl.touched"
+      class="errorMsg"
+    >
+      * Please enter a valid email address
+    </ion-label>
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="key" slot="start" color="primary"></ion-icon>
+      <ion-input
+        type="password"
+        name="password"
+        ngModel
+        shape="round"
+        #passwordCtrl="ngModel"
+        placeholder="Password"
+        required
+        minlength="8">
+      </ion-input>
+    </ion-item>
+    <ion-label
+      color="danger"
+      *ngIf="!passwordCtrl.valid && passwordCtrl.touched"
+      class="errorMsg"
+    >
+      * Password must be of minimum 8 characters long.
+    </ion-label>
+    <ion-item lines="full" class="inputs">
+      <ion-icon name="key" slot="start" color="primary"></ion-icon>
+      <ion-input
+        type="text"
+        name="c_password"
+        ngModel
+        shape="round"
+        #c_passwordCtrl="ngModel"
+        placeholder="Confirmar password"
+        required
+        minlength="8">
+      </ion-input>
+    </ion-item>
+    <ion-label
+      color="danger"
+      *ngIf="!c_passwordCtrl.valid && c_passwordCtrl.touched"
+      class="errorMsg"
+    >
+      * Confirm Password must be of minimum 8 characters long.
+    </ion-label>
+    <ion-label
+      color="danger"
+      *ngIf="c_passwordCtrl.valid && c_passwordCtrl.value !== passwordCtrl.value"
+      class="errorMsg"
+    >
+      * Password Mismatch! You have entered a different password.
+    </ion-label>
+    <ion-button
+      [disabled]="(!f1.valid || !validateEmail(emailCtrl.value)) || (c_passwordCtrl.value !== passwordCtrl.value)"
+      type="submit"
+      color="danger"
+      expand="block"
+      shape="round"
+    >
+      Registrar
+    </ion-button>
+
+  </form>
+
+</ion-content>
