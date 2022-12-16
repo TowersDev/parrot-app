@@ -25,27 +25,31 @@ ion-card {
   text-align: center;
 }
 
-.pepe {
-  background-attachment: fixed;
-  background-size : cover;
-  filter : blur(10px);
-  width: auto;
-  height: 200px;
-}
+// .image {
+//   background-attachment: fixed;
+//   background-size : cover;
+//   filter : blur(10px);
+//   width: auto;
+//   height: 200px;
+// }
 
-.card-title {
-  position: absolute;
-  top: 50%;
-  font-size: 2.0em;
-  width: 100%;
-  font-weight: bold;
-  color: #fff;
-}
+// .card-title {
+//   position: absolute;
+//   top: 50%;
+//   font-size: 2.0em;
+//   width: 100%;
+//   font-weight: bold;
+//   color: #fff;
+// }
 
-.card-subtitle {
-  font-size: 1.0em;
-  position: absolute;
-  top: 40%;
-  width: 100%;
-  color: #fff;
+// .card-subtitle {
+//   font-size: 1.0em;
+//   position: absolute;
+//   top: 40%;
+//   width: 100%;
+//   color: #fff;
+// }
+
+ion-infinite-scroll {
+  height: 100vh;
 }

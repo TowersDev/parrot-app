@@ -30,10 +30,50 @@
   </ion-header>
       <!-- BODY -->
   <ion-content class="ion-padding">
-    <ion-card>
-      <img src="assets/images/avatar-default.jpg" class="pepe" />
-      <div class="card-title">São Paulo</div>
-      <div class="card-subtitle">41 Listings</div>
-  </ion-card>
+    <ion-segment mode="md"  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="0">
+        <ion-icon name="home"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <ion-icon name="heart"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <ion-icon name="pin"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div [ngSwitch]="type">
+      <ion-slides pager="false" #slides [options]="sliderOptions" (ionSlideDidChange)="slidesChanged(slides)" (ionSlideDidLoad)="slidesChanged(slides)" style="padding-bottom: 50px;">
+        <ion-slide>
+          <ion-infinite-scroll>
+            <h4>Awesome Slide 1</h4>
+          </ion-infinite-scroll>
+
+        </ion-slide>
+        <ion-slide>
+          <h4>Awesome Slide 2</h4>
+        </ion-slide>
+        <ion-slide>
+          <h4>Awesome Slide 3</h4>
+        </ion-slide>
+      </ion-slides>
+      <!-- <ion-list *ngSwitchCase="'home'">
+        <ion-item *ngFor="let item of [].constructor(5); let i = index">
+          <ion-thumbnail slot="start">
+            <img src="https://cdn.pixabay.com/photo/2017/09/26/22/02/donald-trump-2790273_960_720.jpg">
+          </ion-thumbnail>
+          <h6>Deposit - {{ i }}</h6>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'heart'">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img src="https://cdn.pixabay.com/photo/2017/09/26/22/02/donald-trump-2790273_960_720.jpg">
+          </ion-thumbnail>
+          <h6>Loan 2</h6>
+        </ion-item>
+      </ion-list> -->
+    </div>
   </ion-content>
 </div>
