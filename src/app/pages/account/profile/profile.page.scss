@@ -1,0 +1,98 @@
+  // ion-img {
+  //   height: 150px;
+  //   width: 100%;
+  //   object-fit: cover;
+  // }
+
+
+  // ion-avatar{
+  //   width: 100px;
+  //   height: 100px;
+  //   position: absolute;
+  //   top: 100px;
+  //   left: 15px;
+  // }
+
+  // ion-button{
+  //   position: absolute;
+  //   top: 160px;
+  //   right: 20px;
+  // }
+
+  // ion-item {
+  //   white-space: normal;
+  //   position: absolute;
+  //   top: 220px;
+  // }
+
+  // .chips {
+  //   position: absolute;
+  //   top: 300px;
+  //   right: 20px;
+  // }
+
+  // .tweets {
+  //   position: absolute;
+  //   top: 350px;
+  //   width: 100%;
+  // }
+
+  // span {
+  //   color: var(--ion-color-primary);
+  // }
+
+  // .profileUser {
+  //   position: absolute;
+  //   top: 180px;
+  //   right: 20px;
+  //   left: 120px;
+  //   font-size: 12px;
+  //   color: grey;
+  // }
+
+  // .displayName {
+  //   position: absolute;
+  //   top: 160px;
+  //   right: 20px;
+  //   left: 120px;
+  //   font-size: 20px;
+  // }
+
+ion-label {
+    font-size: 0.95rem;
+    ion-text {
+        ion-icon {
+            font-size: 0.6rem;
+        }
+    }
+}
+ion-note {
+    font-size: 0.87rem;
+    ion-icon {
+        float: right;
+        padding-left: 0.2rem;
+    }
+}
+
+p {
+    font-size: 0.8rem;
+}
+
+
+ion-avatar {
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+
+
+.backgroundProfile {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+b {
+  margin-right: 8px;
+  color: var(--ion-color-primary);
+}

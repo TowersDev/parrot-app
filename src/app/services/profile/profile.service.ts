@@ -22,8 +22,9 @@ export class ProfileService {
   async getProfile() {
     try {
       const uid = await this.authService.getId();
-      // let profile: any = await (await (this.apiService.collection('users').doc(uid).get().toPromise())).data();
-      let profile: User;
+      let profile: any = await (
+        await this.apiService.collection('users').doc(uid).get().toPromise()
+      ).data();
       const docSnap: any = await this.apiService.getDocById(`users/${uid}`);
       if (docSnap?.exists()) {
         profile = docSnap.data();

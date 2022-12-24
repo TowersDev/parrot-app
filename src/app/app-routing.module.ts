@@ -21,6 +21,21 @@ const routes: Routes = [
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
     canLoad: [AutoLoginGuard],
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/account/profile/profile.module').then(
+        (m) => m.ProfilePageModule
+      ),
+  },
+
+  {
+    path: 'profile/:id',
+    loadChildren: () =>
+      import('./pages/account/profile/profile.module').then(
+        (m) => m.ProfilePageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [

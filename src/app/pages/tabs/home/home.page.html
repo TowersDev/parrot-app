@@ -1,79 +1,122 @@
 <ion-menu contentId="main-content">
   <!-- BODY MENU -->
   <ion-content class="ion-padding">
-    <ion-toolbar color="secundary">
-      <ion-buttons color="secundary" slot="end">
+    <ion-toolbar color="none">
+      <ion-buttons slot="end">
         <ion-button fill="clear" (click)="confirmLogout()">
-          <ion-icon name="power-outline" color="white" slot="icon-only"></ion-icon>
+          <ion-icon name="power-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
-    <ion-toolbar color="secundary">
+    <ion-toolbar color="none">
       <div class="avatar">
-        <img src="assets/images/avatar-default.jpg" class="menu" />
+        <img src="assets/images/avatar-default.jpg" class="img"/>
       </div>
-      <ion-label>{{this.profile?.name}}</ion-label>
+      <ion-list>
+        <ion-item  routerLink="/profile">
+          <ion-button fill="clear">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            Perfil
+          </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-toolbar>
   </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
   <!-- HEADER -->
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="none">
       <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-avatar>
         <img src="assets/images/avatar-default.jpg" />
+        {{this.profile?.name}}
       </ion-avatar>
     </ion-toolbar>
   </ion-header>
       <!-- BODY -->
   <ion-content class="ion-padding">
-    <ion-segment mode="md"  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="0">
-        <ion-icon name="home"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="1">
-        <ion-icon name="heart"></ion-icon>
-      </ion-segment-button>
-      <ion-segment-button value="2">
-        <ion-icon name="pin"></ion-icon>
-      </ion-segment-button>
-    </ion-segment>
-
     <div [ngSwitch]="type">
-      <ion-slides pager="false" #slides [options]="sliderOptions" (ionSlideDidChange)="slidesChanged(slides)" (ionSlideDidLoad)="slidesChanged(slides)" style="padding-bottom: 50px;">
-        <ion-slide>
-          <ion-infinite-scroll>
-            <h4>Awesome Slide 1</h4>
-          </ion-infinite-scroll>
-
-        </ion-slide>
-        <ion-slide>
-          <h4>Awesome Slide 2</h4>
-        </ion-slide>
-        <ion-slide>
-          <h4>Awesome Slide 3</h4>
-        </ion-slide>
-      </ion-slides>
-      <!-- <ion-list *ngSwitchCase="'home'">
-        <ion-item *ngFor="let item of [].constructor(5); let i = index">
-          <ion-thumbnail slot="start">
-            <img src="https://cdn.pixabay.com/photo/2017/09/26/22/02/donald-trump-2790273_960_720.jpg">
-          </ion-thumbnail>
-          <h6>Deposit - {{ i }}</h6>
-        </ion-item>
-      </ion-list>
-
-      <ion-list *ngSwitchCase="'heart'">
+      <!-- <ion-list *ngFor="let user of users">
         <ion-item>
-          <ion-thumbnail slot="start">
-            <img src="https://cdn.pixabay.com/photo/2017/09/26/22/02/donald-trump-2790273_960_720.jpg">
-          </ion-thumbnail>
-          <h6>Loan 2</h6>
+          <ion-label>
+            <ion-text class="ion-text-uppercase"><h4>{{user.name}}</h4></ion-text>
+            <p>{{user.uid}}</p>
+          </ion-label>
+          <ion-button slot="end" fill="clear" [routerLink]="['/profile', user.uid]" [queryParams]="{uid: user.uid, name: user.name, email: user.email}">profile</ion-button>
         </ion-item>
       </ion-list> -->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button>
+            <ion-icon name="pencil-outline" id="open-modal" expand="block"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button>
+            <ion-icon name="videocam-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+      <ion-card *ngFor="let parrot of parrots">
+        <ion-avatar [routerLink]="['/profile', parrot.uid]" [queryParams]="{uid: parrot.uid, name: parrot.name, email: parrot.email}">
+          <img alt="Silhouette of a person's head"
+            src="https://media.tenor.com/1_uD2nUx7IYAAAAi/triforce-heroes-link.gif"
+            class="avatar" />
+            <ion-label color="primary">{{this.parrot?.name}}</ion-label>
+        </ion-avatar>
+        <ion-card-header>
+          <div>
+            <ion-card-subtitle>{{parrot.message}}</ion-card-subtitle>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="social-icons">
+            <ion-icon name="heart-outline"
+              style="color: red; font-size: 20px; cursor: pointer;" (click)="someThingLikeLogOut()">
+            </ion-icon>
+            <ion-icon name="return-up-back-outline" style="color: grey; font-size: 20px; cursor: pointer;"
+              (click)="someThingLikeLogOut()"></ion-icon>
+            <ion-icon name="chatbubble-outline"
+              style="color: rgba(45, 155, 54, 0.479); font-size: 20px; cursor: pointer;"
+              (click)="someThingLikeLogOut()"></ion-icon>
+            <ion-icon name="share-social-outline" style="color: white; font-size: 20px; cursor: pointer;"
+              (click)="someThingLikeLogOut()"></ion-icon>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-icon name="close-outline" style="color: white; font-size: 30px; cursor: pointer;"
+                  (click)="cancel();"></ion-icon>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-icon name="checkmark-outline" style="color: white; font-size: 30px; cursor: pointer;"
+                  (click)="confirm();"></ion-icon>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-item>
+              <ion-textarea placeholder="Introduce el mensaje" [autoGrow]="true" [value]="message" maxlength="150"
+                (ionChange)="onChange($event)">
+              </ion-textarea>
+            </ion-item>
+            <ion-item>
+              <ion-label style="text-align: right;">
+                {{ message?.length || 0 }} / 150
+              </ion-label>
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
     </div>
+
   </ion-content>
 </div>

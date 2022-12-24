@@ -128,43 +128,7 @@ export class ApiService {
     }
   }
 
-  // collection(path, queryFn?) {
-  //   return this.adb.collection(path, queryFn);
-  // }
-
-  geoCollection(path) {
-    return this.GeoFirestore.collection(path);
-  }
-
-  randomString() {
-    const id = Math.floor(100000000 + Math.random() * 900000000);
-    return id.toString();
-  }
-
-  // city apis
-  async getCities() {
-    try {
-      // const cities = await this.collection('cities').get().pipe(
-      //   switchMap(async(data: any) => {
-      //     let cityData = await data.docs.map(element => {
-      //       let item = element.data();
-      //       item.uid = element.id;
-      //       return item;
-      //     });
-      //     console.log(cityData);
-      //     return cityData;
-      //   })
-      // ).toPromise();
-      const querySnapshot = await this.getDocs('cities');
-      const cities = await querySnapshot.docs.map((doc) => {
-        let item = doc.data();
-        item.uid = doc.id;
-        return item;
-      });
-      console.log(cities);
-      return cities;
-    } catch (e) {
-      throw e;
-    }
+  collection(path, queryFn?) {
+    return this.adb.collection(path, queryFn);
   }
 }

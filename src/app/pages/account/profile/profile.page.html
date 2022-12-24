@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-img src="https://docs-demo.ionic.io/assets/madison.jpg" alt="The Wisconsin State Capitol building in Madison, WI at night" class="backgrounProfile"></ion-img>
+  <ion-list>
+    <ion-item>
+      <ion-avatar>
+        <img alt="avatar" src="../../../../assets/images/avatar-default.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <ion-text class="ion-text-uppercase" *ngIf="username"><h4>{{username}}</h4></ion-text>
+        <ion-text class="ion-text-uppercase" *ngIf="!username"><h4>{{this.profile.name}}</h4></ion-text>
+        <p *ngIf="uid">{{uid}}</p>
+        <p *ngIf="!uid">{{this.profile?.uid}}</p>
+      </ion-label>
+      <ion-button *ngIf="this.profile?.uid !== this.params?.id && this.isFollowing" slot="end" fill="clear" (click)="unFollow(this.profile?.uid, uid)">{{buildProfileButton()}}</ion-button>
+      <ion-button *ngIf="this.profile?.uid !== this.params?.id && !this.isFollowing" slot="end" fill="clear" (click)="follow(this.profile?.uid, uid)">{{buildProfileButton()}}</ion-button>
+      <ion-button *ngIf="this.profile?.uid === this.params?.id" slot="end" fill="clear" (click)="editProfile()">{{buildProfileButton()}}</ion-button>
+    </ion-item>
+    <ion-item slot="end">
+      <ion-chip><b>{{this.followerCount}}</b> seguidores</ion-chip>
+      <ion-chip><b color="primary">{{this.followingCount}}</b> siguiendo</ion-chip>
+    </ion-item>
+  </ion-list>
+</ion-content>
